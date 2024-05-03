@@ -1,8 +1,9 @@
-## Monorepo
-
+## Monorepo main-launcher
+Pasos para restaurar el reporsitorio y los sub módulos:
 1. Clonar repositorio
 2. Crear archivo `.env` en base al archivo `.env.template`
-3. El archivo docker-compose.yml se ejecuta con el comando:
+3. Ejecutar el comando `git submodule update --init --recursive` para reconstruir los sub módulos
+4. El archivo docker-compose.yml se ejecuta con el comando para levantar todos los servicios y microservicios:
 ```
 docker compose up --build
 ```
