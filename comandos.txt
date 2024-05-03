@@ -7,3 +7,10 @@ git submodule add https://github.com/Curso-Nest-Microservicios/cliente-gateway.g
 git add .
 git commit -m "Se agrega submodulo cliente-gateway"
 git push
+
+git submodule add https://github.com/Curso-Nest-Microservicios/ordenes-ms.git ordenes-ms
+git submodule add https://github.com/Curso-Nest-Microservicios/productos-mcsv.git productos-ms
+
+git add .
+git commit -m "Se agregan submodulos ordenes-ms productos-ms"
+git push
