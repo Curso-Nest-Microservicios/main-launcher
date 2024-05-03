@@ -1,5 +1,5 @@
 ## Monorepo main-launcher
-Pasos para restaurar el reporsitorio y los sub módulos:
+Pasos para restaurar el repositorio y los sub módulos:
 1. Clonar repositorio
 2. Crear archivo `.env` en base al archivo `.env.template`
 3. Ejecutar el comando `git submodule update --init --recursive` para reconstruir los sub módulos
