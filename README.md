@@ -1,6 +1,8 @@
 ## Monorepo
 
-El archivo docker-compose.yml se ejecuta en la carpeta de nivel superior con el comando:
+1. Clonar repositorio
+2. Crear archivo `.env` en base al archivo `.env.template`
+3. El archivo docker-compose.yml se ejecuta con el comando:
 ```
 docker compose up --build
 ```
