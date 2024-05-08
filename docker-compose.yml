@@ -55,4 +55,22 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_DB=ordenes
+
+  # Microservicio de Pagos.
+  pagos-ms:
+    container_name: pagos-ms
+    build: ./pagos-ms
+    volumes:
+      - ./pagos-ms/src:/usr/src/app/src
+    command: npm run start:dev
+    ports:
+      - ${PAGOS_MS_PORT}:${PAGOS_MS_PORT}    
+    environment:
+      - PORT=${PAGOS_MS_PORT}
+      - NATS_SERVERS=nats://nats-server:4222
+      - STRIPE_SECRET=${STRIPE_SECRET}
+      - STRIPE_SUCCESS_URL=${STRIPE_SUCCESS_URL}
+      - STRIPE_CANCEL_URL=${STRIPE_CANCEL_URL}
+      - STRIPE_LOCALE=${STRIPE_LOCALE}
+      - STRIPE_ENDPOINT_SECRET=${STRIPE_ENDPOINT_SECRET}
       

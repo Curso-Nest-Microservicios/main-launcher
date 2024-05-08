@@ -14,3 +14,9 @@ git submodule add https://github.com/Curso-Nest-Microservicios/productos-mcsv.gi
 git add .
 git commit -m "Se agregan submodulos ordenes-ms productos-ms"
 git push
+
+git submodule add https://github.com/Curso-Nest-Microservicios/pagos-ms.git pagos-ms
+
+git add .
+git commit -m "Se agregan submodulo pagos-ms"
+git push
