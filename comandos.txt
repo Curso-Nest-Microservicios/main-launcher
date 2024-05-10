@@ -20,3 +20,9 @@ git submodule add https://github.com/Curso-Nest-Microservicios/pagos-ms.git pago
 git add .
 git commit -m "Se agregan submodulo pagos-ms"
 git push
+
+git submodule add https://github.com/Curso-Nest-Microservicios/auth-ms.git auth-ms
+
+git add .
+git commit -m "Se agregan submodulo auth-ms"
+git push
