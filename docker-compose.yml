@@ -74,7 +74,7 @@ services:
       - STRIPE_LOCALE=${STRIPE_LOCALE}
       - STRIPE_ENDPOINT_SECRET=${STRIPE_ENDPOINT_SECRET}
 
-  # Microservicio de Productos.
+  # Microservicio de Auth-Ms.
   auth-ms:
     build: ./auth-ms
     volumes:

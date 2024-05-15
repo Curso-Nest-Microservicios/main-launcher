@@ -4,6 +4,8 @@ docker compose up --build
 -- Para construir imagen de producción:
 docker compose -f docker-compose.prod.yml build
 
+docker compose -f docker-compose.prod.yml up
+
 -- Agregar submodulos al repositorio main-launcher:
 git submodule add https://github.com/Curso-Nest-Microservicios/cliente-gateway.git cliente-gateway
 
