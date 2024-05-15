@@ -1,0 +1,85 @@
+version: '3'
+
+services:
+  nats-server:
+    image: nats:latest
+
+  # Cliente gateway, punto de entrada Rest.    
+  cliente-gateway:
+    build:
+      context: ./cliente-gateway
+      dockerfile: dockerfile.prod
+    image: cliente-gateway-prod
+    ports:
+      - ${CLIENTE_GATEWAY_PORT}:${CLIENTE_GATEWAY_PORT}
+    environment:
+      - PORT=${CLIENTE_GATEWAY_PORT}
+      - NATS_SERVERS=nats://nats-server:4222
+
+  # # Microservicio de Productos.
+  # productos-ms:
+  #   build: ./productos-ms
+  #   volumes:
+  #     - ./productos-ms/src:/usr/src/app/src
+  #   command: npm run start:dev
+  #   environment:
+  #     - PORT=3001
+  #     - NATS_SERVERS=nats://nats-server:4222
+  #     - DATABASE_URL=file:./dev.db
+
+  # # Microservicio de Órdenes.
+  # ordenes-ms:
+  #   depends_on:
+  #     - ordenes-db
+  #   build: ./ordenes-ms
+  #   volumes:
+  #     - ./ordenes-ms/src:/usr/src/app/src
+  #   command: npm run start:dev
+  #   environment:
+  #     - PORT=3002
+  #     - NATS_SERVERS=nats://nats-server:4222
+  #     - DATABASE_URL=postgresql://postgres:postgres@ordenes-db:5432/ordenes?schema=public
+
+  # # Base de datos para Órdenes.
+  # ordenes-db:
+  #   container_name: ordenes_database
+  #   image: postgres:16.2
+  #   restart: always
+  #   volumes:
+  #     - ./ordenes-ms/postgres:/var/lib/postgresql/data
+  #   ports:
+  #     - 5432:5432
+  #   environment:
+  #     - POSTGRES_USER=postgres
+  #     - POSTGRES_PASSWORD=postgres
+  #     - POSTGRES_DB=ordenes
+
+  # # Microservicio de Pagos.
+  # pagos-ms:
+  #   container_name: pagos-ms
+  #   build: ./pagos-ms
+  #   volumes:
+  #     - ./pagos-ms/src:/usr/src/app/src
+  #   command: npm run start:dev
+  #   ports:
+  #     - ${PAGOS_MS_PORT}:${PAGOS_MS_PORT}    
+  #   environment:
+  #     - PORT=${PAGOS_MS_PORT}
+  #     - NATS_SERVERS=nats://nats-server:4222
+  #     - STRIPE_SECRET=${STRIPE_SECRET}
+  #     - STRIPE_SUCCESS_URL=${STRIPE_SUCCESS_URL}
+  #     - STRIPE_CANCEL_URL=${STRIPE_CANCEL_URL}
+  #     - STRIPE_LOCALE=${STRIPE_LOCALE}
+  #     - STRIPE_ENDPOINT_SECRET=${STRIPE_ENDPOINT_SECRET}
+
+  # # Microservicio de Productos.
+  # auth-ms:
+  #   build: ./auth-ms
+  #   volumes:
+  #     - ./auth-ms/src:/usr/src/app/src
+  #   command: npm run start:dev
+  #   environment:
+  #     - PORT=3004
+  #     - NATS_SERVERS=nats://nats-server:4222
+  #     - DATABASE_URL=${AUTH_DATABASE_URL}
+  #     - JWT_SECRET=${JWT_SECRET}
