@@ -4,6 +4,7 @@ docker compose up --build
 -- Para construir imagen de producción:
 docker compose -f docker-compose.prod.yml build
 
+-- Para levantar el contenedor de producción:
 docker compose -f docker-compose.prod.yml up
 
 -- Agregar submodulos al repositorio main-launcher:
