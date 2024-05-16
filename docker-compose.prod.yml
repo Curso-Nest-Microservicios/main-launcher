@@ -28,16 +28,34 @@ services:
       - DATABASE_URL=${AUTH_DATABASE_URL}
       - JWT_SECRET=${JWT_SECRET}
 
-  # # Microservicio de Productos.
-  # productos-ms:
-  #   build: ./productos-ms
-  #   volumes:
-  #     - ./productos-ms/src:/usr/src/app/src
-  #   command: npm run start:dev
-  #   environment:
-  #     - PORT=3001
-  #     - NATS_SERVERS=nats://nats-server:4222
-  #     - DATABASE_URL=file:./dev.db
+  # Microservicio de Productos.
+  productos-ms:
+    build:
+      context: ./productos-ms
+      dockerfile: dockerfile.prod
+    image: productos-ms
+    environment:
+      - PORT=3001
+      - NATS_SERVERS=nats://nats-server:4222
+      - DATABASE_URL=file:./dev.db
+
+  # Microservicio de Pagos.
+  pagos-ms:
+    build:
+      context: ./pagos-ms
+      dockerfile: dockerfile.prod
+    image: pagos-ms
+    ports:
+      - ${PAGOS_MS_PORT}:${PAGOS_MS_PORT}    
+    environment:
+      - PORT=${PAGOS_MS_PORT}
+      - NATS_SERVERS=nats://nats-server:4222
+      - STRIPE_SECRET=${STRIPE_SECRET}
+      - STRIPE_SUCCESS_URL=${STRIPE_SUCCESS_URL}
+      - STRIPE_CANCEL_URL=${STRIPE_CANCEL_URL}
+      - STRIPE_LOCALE=${STRIPE_LOCALE}
+      - STRIPE_ENDPOINT_SECRET=${STRIPE_ENDPOINT_SECRET}
+
 
   # # Microservicio de Órdenes.
   # ordenes-ms:
@@ -65,23 +83,3 @@ services:
   #     - POSTGRES_USER=postgres
   #     - POSTGRES_PASSWORD=postgres
   #     - POSTGRES_DB=ordenes
-
-  # # Microservicio de Pagos.
-  # pagos-ms:
-  #   container_name: pagos-ms
-  #   build: ./pagos-ms
-  #   volumes:
-  #     - ./pagos-ms/src:/usr/src/app/src
-  #   command: npm run start:dev
-  #   ports:
-  #     - ${PAGOS_MS_PORT}:${PAGOS_MS_PORT}    
-  #   environment:
-  #     - PORT=${PAGOS_MS_PORT}
-  #     - NATS_SERVERS=nats://nats-server:4222
-  #     - STRIPE_SECRET=${STRIPE_SECRET}
-  #     - STRIPE_SUCCESS_URL=${STRIPE_SUCCESS_URL}
-  #     - STRIPE_CANCEL_URL=${STRIPE_CANCEL_URL}
-  #     - STRIPE_LOCALE=${STRIPE_LOCALE}
-  #     - STRIPE_ENDPOINT_SECRET=${STRIPE_ENDPOINT_SECRET}
-
-
