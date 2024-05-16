@@ -57,29 +57,13 @@ services:
       - STRIPE_ENDPOINT_SECRET=${STRIPE_ENDPOINT_SECRET}
 
 
-  # # Microservicio de Órdenes.
-  # ordenes-ms:
-  #   depends_on:
-  #     - ordenes-db
-  #   build: ./ordenes-ms
-  #   volumes:
-  #     - ./ordenes-ms/src:/usr/src/app/src
-  #   command: npm run start:dev
-  #   environment:
-  #     - PORT=3002
-  #     - NATS_SERVERS=nats://nats-server:4222
-  #     - DATABASE_URL=postgresql://postgres:postgres@ordenes-db:5432/ordenes?schema=public
-
-  # # Base de datos para Órdenes.
-  # ordenes-db:
-  #   container_name: ordenes_database
-  #   image: postgres:16.2
-  #   restart: always
-  #   volumes:
-  #     - ./ordenes-ms/postgres:/var/lib/postgresql/data
-  #   ports:
-  #     - 5432:5432
-  #   environment:
-  #     - POSTGRES_USER=postgres
-  #     - POSTGRES_PASSWORD=postgres
-  #     - POSTGRES_DB=ordenes
+  # Microservicio de Órdenes.
+  ordenes-ms:
+    build:
+      context: ./ordenes-ms
+      dockerfile: dockerfile.prod
+    image: ordenes-ms
+    environment:
+      - PORT=3000
+      - NATS_SERVERS=nats://nats-server:4222
+      - DATABASE_URL=${ORDENES_DATABASE_URL}
