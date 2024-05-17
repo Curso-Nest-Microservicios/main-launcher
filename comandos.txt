@@ -35,3 +35,17 @@ git push
 
 -- Para instalar Google Cloud CLI
 gcloud auth configure-docker us-south1-docker.pkg.dev
+
+-- Para subir cada una de las imágenes a Google Cloud, situarse en el directorio de cada proyecto:
+-- auth-ms
+-- Se crea la imagen
+docker build -f dockerfile.prod -t auth-ms .
+-- Se renombra
+docker build -f dockerfile.prod -t us-south1-docker.pkg.dev/microserviciosnestjs/registro-imagen/auth-ms .
+-- Se sube la imagen
+docker image push us-south1-docker.pkg.dev/microserviciosnestjs/registro-imagen/auth-ms
+
+-- cliente-gateway
+docker build -f dockerfile.prod -t cliente-gateway .
+docker build -f dockerfile.prod -t us-south1-docker.pkg.dev/microserviciosnestjs/registro-imagen/cliente-gateway .
+docker image push us-south1-docker.pkg.dev/microserviciosnestjs/registro-imagen/cliente-gateway
