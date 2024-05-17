@@ -32,3 +32,6 @@ git submodule add https://github.com/Curso-Nest-Microservicios/auth-ms.git auth-
 git add .
 git commit -m "Se agregan submodulo auth-ms"
 git push
+
+-- Para instalar Google Cloud CLI
+gcloud auth configure-docker us-south1-docker.pkg.dev
