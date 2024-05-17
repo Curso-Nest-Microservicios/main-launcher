@@ -62,6 +62,8 @@ services:
     build:
       context: ./ordenes-ms
       dockerfile: dockerfile.prod
+      args:
+        - ORDENES_DATABASE_URL=${ORDENES_DATABASE_URL}
     image: ordenes-ms
     environment:
       - PORT=3000
