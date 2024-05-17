@@ -9,7 +9,7 @@ services:
     build:
       context: ./cliente-gateway
       dockerfile: dockerfile.prod
-    image: cliente-gateway-prod
+    image: us-south1-docker.pkg.dev/microserviciosnestjs/registro-imagen/cliente-gateway
     ports:
       - ${CLIENTE_GATEWAY_PORT}:${CLIENTE_GATEWAY_PORT}
     environment:
@@ -21,7 +21,7 @@ services:
     build:
       context: ./auth-ms
       dockerfile: dockerfile.prod
-    image: auth-ms
+    image: us-south1-docker.pkg.dev/microserviciosnestjs/registro-imagen/auth-ms
     environment:
       - PORT=3004
       - NATS_SERVERS=nats://nats-server:4222
@@ -33,7 +33,7 @@ services:
     build:
       context: ./productos-ms
       dockerfile: dockerfile.prod
-    image: productos-ms
+    image: us-south1-docker.pkg.dev/microserviciosnestjs/registro-imagen/productos-ms
     environment:
       - PORT=3001
       - NATS_SERVERS=nats://nats-server:4222
@@ -44,7 +44,7 @@ services:
     build:
       context: ./pagos-ms
       dockerfile: dockerfile.prod
-    image: pagos-ms
+    image: us-south1-docker.pkg.dev/microserviciosnestjs/registro-imagen/pagos-ms
     ports:
       - ${PAGOS_MS_PORT}:${PAGOS_MS_PORT}    
     environment:
@@ -64,7 +64,7 @@ services:
       dockerfile: dockerfile.prod
       args:
         - ORDENES_DATABASE_URL=${ORDENES_DATABASE_URL}
-    image: ordenes-ms
+    image: us-south1-docker.pkg.dev/microserviciosnestjs/registro-imagen/ordenes-ms
     environment:
       - PORT=3000
       - NATS_SERVERS=nats://nats-server:4222

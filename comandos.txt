@@ -49,3 +49,12 @@ docker image push us-south1-docker.pkg.dev/microserviciosnestjs/registro-imagen/
 docker build -f dockerfile.prod -t cliente-gateway .
 docker build -f dockerfile.prod -t us-south1-docker.pkg.dev/microserviciosnestjs/registro-imagen/cliente-gateway .
 docker image push us-south1-docker.pkg.dev/microserviciosnestjs/registro-imagen/cliente-gateway
+
+-- ordenes-ms
+docker image push us-south1-docker.pkg.dev/microserviciosnestjs/registro-imagen/ordenes-ms
+
+-- pagos-ms
+docker image push us-south1-docker.pkg.dev/microserviciosnestjs/registro-imagen/pagos-ms
+
+-- productos-ms
+docker image push us-south1-docker.pkg.dev/microserviciosnestjs/registro-imagen/productos-ms
