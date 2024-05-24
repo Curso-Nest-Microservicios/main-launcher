@@ -58,3 +58,9 @@ docker image push us-south1-docker.pkg.dev/microserviciosnestjs/registro-imagen/
 
 -- productos-ms
 docker image push us-south1-docker.pkg.dev/microserviciosnestjs/registro-imagen/productos-ms
+
+-- Para crear configuración de kubernete:
+helm create tienda
+
+helm install tienda .
+helm upgrade tienda .
