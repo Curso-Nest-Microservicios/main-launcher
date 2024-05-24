@@ -64,3 +64,6 @@ helm create tienda
 
 helm install tienda .
 helm upgrade tienda .
+
+-- Para crear deployment:
+kubectl create deployment cliente-gateway --image=us-south1-docker.pkg.dev/microserviciosnestjs/registro-imagen/cliente-gateway --dry-run=client -o yaml > deployment.yml

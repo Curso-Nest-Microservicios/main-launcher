@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: cliente-gateway
+  name: cliente-gateway
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cliente-gateway
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: cliente-gateway
+    spec:
+      containers:
+      - image: us-south1-docker.pkg.dev/microserviciosnestjs/registro-imagen/cliente-gateway
+        name: cliente-gateway
+        resources: {}
+status: {}
