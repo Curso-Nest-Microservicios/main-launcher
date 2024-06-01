@@ -67,3 +67,9 @@ helm upgrade tienda .
 
 -- Para crear deployment:
 kubectl create deployment cliente-gateway --image=us-south1-docker.pkg.dev/microserviciosnestjs/registro-imagen/cliente-gateway --dry-run=client -o yaml > deployment.yml
+
+-- Crear secreto con kubectl para ligar el deployment con Google Cloud
+kubectl create secret docker-registry gcr-json-key --docker-server=us-south1-docker.pkg.dev --docker-username=_json_key --docker-password="$(cat 'C:\desarrollo\primera-contribucion\curso-nestjs-microservicios\microserviciosnestjs-09d50d1964ad.json')" --docker-email=zutjmx@gmail.com
+
+-- Para utilizar el secreto creado
+kubectl patch serviceaccounts default -p '{ "imagePullSecrets": [{ "name": "gcr-json-key" }] }'
