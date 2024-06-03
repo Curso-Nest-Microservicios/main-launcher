@@ -72,4 +72,6 @@ kubectl create deployment cliente-gateway --image=us-south1-docker.pkg.dev/micro
 kubectl create secret docker-registry gcr-json-key --docker-server=us-south1-docker.pkg.dev --docker-username=_json_key --docker-password="$(cat 'C:\desarrollo\primera-contribucion\curso-nestjs-microservicios\microserviciosnestjs-09d50d1964ad.json')" --docker-email=zutjmx@gmail.com
 
 -- Para utilizar el secreto creado
-kubectl patch serviceaccounts default -p '{ "imagePullSecrets": [{ "name": "gcr-json-key" }] }'
+kubectl patch serviceaccounts default -p "{ \"imagePullSecrets\": [{ \"name\": \"gcr-json-key\" }] }"
+
+kubectl rollout restart deployment
