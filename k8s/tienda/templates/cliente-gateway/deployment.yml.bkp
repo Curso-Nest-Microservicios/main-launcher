@@ -20,5 +20,8 @@ spec:
       containers:
       - image: us-south1-docker.pkg.dev/microserviciosnestjs/registro-imagen/cliente-gateway
         name: cliente-gateway
+        env:
+        - name: PORT
+          value: "3000"
         resources: {}
 status: {}

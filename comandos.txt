@@ -64,6 +64,7 @@ helm create tienda
 
 helm install tienda .
 helm upgrade tienda .
+helm upgrade -i tienda .
 
 -- Para crear deployment:
 kubectl create deployment cliente-gateway --image=us-south1-docker.pkg.dev/microserviciosnestjs/registro-imagen/cliente-gateway --dry-run=client -o yaml > deployment.yml
@@ -74,4 +75,14 @@ kubectl create secret docker-registry gcr-json-key --docker-server=us-south1-doc
 -- Para utilizar el secreto creado
 kubectl patch serviceaccounts default -p "{ \"imagePullSecrets\": [{ \"name\": \"gcr-json-key\" }] }"
 
+kubectl patch serviceaccounts default -p '{ "imagePullSecrets": [{ "name":"gcr-json-key" }] }'
+
+-- Con PowerShell:
+$imgsec= '{"imagePullSecrets": [{"name": "gcr-json-key"}]}' | ConvertTo-Json
+kubectl patch serviceaccount default -p $imgsec
+
 kubectl rollout restart deployment
+
+gcloud auth activate-service-account k8s-mcrsrv-nestjs@microserviciosnestjs.iam.gserviceaccount.com --key-file=C:\desarrollo\primera-contribucion\curso-nestjs-microservicios\microserviciosnestjs-09d50d1964ad.json
+
+kubectl patch serviceaccount k8s-mcrsrv-nestjs@microserviciosnestjs.iam.gserviceaccount.com -p $imgsec
