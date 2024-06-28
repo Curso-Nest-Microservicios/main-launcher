@@ -86,3 +86,10 @@ kubectl rollout restart deployment
 gcloud auth activate-service-account k8s-mcrsrv-nestjs@microserviciosnestjs.iam.gserviceaccount.com --key-file=C:\desarrollo\primera-contribucion\curso-nestjs-microservicios\microserviciosnestjs-09d50d1964ad.json
 
 kubectl patch serviceaccount k8s-mcrsrv-nestjs@microserviciosnestjs.iam.gserviceaccount.com -p $imgsec
+
+-- Crear de nuevo el secret:
+kubectl create secret docker-registry gcr-json-key --docker-server=us-south1-docker.pkg.dev --docker-username=_json_key --docker-password="$(cat 'C:\desarrollo\primera-contribucion\curso-nestjs-microservicios\microserviciosnestjs-b9699ac36d0b.json')" --docker-email=zutjmx@gmail.com
+
+-- Hacer el patch con PowerShell:
+$imgsec= '{"imagePullSecrets": [{"name": "gcr-json-key"}]}' | ConvertTo-Json
+kubectl patch serviceaccount default -p $imgsec
